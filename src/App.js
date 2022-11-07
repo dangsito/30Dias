@@ -1,7 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState, useEffect } from "react";
 function App() {
+  const [time] = useState(0);
+  useEffect(async () => {
+    await fetch("/time")
+      .then((res) => res.json())
+      .then((data) => console.log("tIEMPO", data.time));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +24,7 @@ function App() {
         >
           Learn React
         </a>
+        <p>The current gang {time}</p>
       </header>
     </div>
   );
